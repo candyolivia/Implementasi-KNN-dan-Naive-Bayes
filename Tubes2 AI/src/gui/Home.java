@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Home extends JPanel {
-	
+
 	private BufferedImage background;
 	private BufferedImage title;
 	private JButton helpbtn;
@@ -101,6 +101,31 @@ public class Home extends JPanel {
 		g.drawImage(title,200,20,null);
 	}
 	
+	//getter and setter
+	public JButton getHelpbtn() {
+		return helpbtn;
+	}
+
+	public void setHelpbtn(JButton helpbtn) {
+		this.helpbtn = helpbtn;
+	}
+
+	public JButton getStartbtn() {
+		return startbtn;
+	}
+
+	public void setStartbtn(JButton startbtn) {
+		this.startbtn = startbtn;
+	}
+
+	public JButton getAboutbtn() {
+		return aboutbtn;
+	}
+
+	public void setAboutbtn(JButton aboutbtn) {
+		this.aboutbtn = aboutbtn;
+	}
+
 	
 	
 }
