@@ -22,7 +22,9 @@ public class Main extends JFrame {
 	}
 	
 	public static void main (String[] args) {
+		ImageIcon icon = new ImageIcon("images/icon.png");
 		JFrame f = new Main();
+		f.setIconImage(icon.getImage());
 		f.show();
 		
 	}
