@@ -26,6 +26,8 @@ public class Main extends JFrame {
 		
 		About about = new About();
 		Help help = new Help();
+		Start start = new Start();
+		Classify classify = new Classify();
 		
 		//OnClick About Button
 		home.getAboutbtn().addActionListener(new ActionListener() {
@@ -33,6 +35,21 @@ public class Main extends JFrame {
 		    // ... called when button clicked
 			  contentPane.remove(home);
 			  contentPane.add(about);
+              contentPane.revalidate();
+              contentPane.repaint();
+              pack();
+              setSize (800,590);
+              setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+              setResizable(false);			  
+		  }
+		});
+		
+		//OnClick Start Button
+		home.getStartbtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+		    // ... called when button clicked
+			  contentPane.remove(home);
+			  contentPane.add(start);
               contentPane.revalidate();
               contentPane.repaint();
               pack();
@@ -78,6 +95,66 @@ public class Main extends JFrame {
 		    // ... called when button clicked
 			  contentPane.remove(help);
 			  contentPane.add(home);
+	            contentPane.revalidate();
+	            contentPane.repaint();
+	            pack();
+	            setSize (800,590);
+	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	            setResizable(false);
+		  }
+		});
+		
+		//OnClick Back Button
+		start.getBackbtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+		    // ... called when button clicked
+			  contentPane.remove(start);
+			  contentPane.add(home);
+	            contentPane.revalidate();
+	            contentPane.repaint();
+	            pack();
+	            setSize (800,590);
+	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	            setResizable(false);
+		  }
+		});
+		
+		//OnClick Back Button
+		classify.getBackbtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+		    // ... called when button clicked
+			  contentPane.remove(classify);
+			  contentPane.add(home);
+	            contentPane.revalidate();
+	            contentPane.repaint();
+	            pack();
+	            setSize (800,590);
+	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	            setResizable(false);
+		  }
+		});
+		
+		//OnClick Classify Button
+		start.getClassifybtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+		    // ... called when button clicked
+			  contentPane.remove(start);
+			  contentPane.add(classify);
+	            contentPane.revalidate();
+	            contentPane.repaint();
+	            pack();
+	            setSize (800,590);
+	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	            setResizable(false);
+		  }
+		});
+				
+		//OnClick Preprocess Button
+		classify.getPreprocessbtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+		    // ... called when button clicked
+			  contentPane.remove(classify);
+			  contentPane.add(start);
 	            contentPane.revalidate();
 	            contentPane.repaint();
 	            pack();
