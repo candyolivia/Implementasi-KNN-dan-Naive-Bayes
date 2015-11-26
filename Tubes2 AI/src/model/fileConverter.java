@@ -19,6 +19,8 @@ public class fileConverter {
 	Map<String, String> attr = new HashMap<String, String>();
 	private int numData;
 	private int[][] matrixDataInteger;
+	private int[][][] matrixChartData;
+	private int maxAttrValue = 10;
 	
 	public int getNumData() {
 		return attrData.size();
@@ -145,6 +147,39 @@ public class fileConverter {
 					}
 				}
 			}
+		}
+	}
+	
+	public void dataToChartMatrix() {
+		printMatrixDataInteger();
+		System.out.println(data.getNumAttr()+" "+matrixAttrInfo.size());
+		System.out.println("Jumlah kelas : " + matrixAttrInfo.get(matrixAttrInfo.size()-1).getNumAttr());
+		System.out.println("Jumlah attribute : " + (matrixAttrInfo.size()-1));
+		matrixChartData = new int[matrixAttrInfo.get(matrixAttrInfo.size()-1).getNumAttr()][matrixAttrInfo.size()-1][maxAttrValue];
+		for (int i = 0; i < matrixAttrInfo.get(matrixAttrInfo.size()-1).getNumAttr(); i++) {
+			for (int j = 0; j < matrixAttrInfo.size()-1; j++) {
+				for (int k = 0; k < matrixAttrInfo.get(j).getNumAttr(); k++) {
+					System.out.println(matrixAttrInfo.get(matrixAttrInfo.size()-1).getAttrListN(i) + " " + matrixAttrInfo.get(j).getAttrListN(k) + " ");
+					for (int l = 0; l < numData; l++) {
+						if ((matrixDataInteger[l][matrixAttrInfo.size()-1] == i)&&(matrixDataInteger[l][j] == k)) {
+							matrixChartData[i][j][k]++;
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+	public void printChartMatrix() {
+		for (int i = 0; i < matrixAttrInfo.get(matrixAttrInfo.size()-1).getNumAttr(); i++) {
+			for (int j = 0; j < matrixAttrInfo.size()-1; j++) {
+				for (int k = 0; k < matrixAttrInfo.get(j).getNumAttr(); k++) {
+					System.out.print(matrixChartData[i][j][k] + " ");
+				}
+				System.out.println();
+			}
+			System.out.println();
 		}
 	}
 	
