@@ -35,10 +35,16 @@ public class AttrInfo {
 	}
 	
 	public void printAttrList () {
-		System.out.println("Attribut dari " + attrName + ":");
+		System.out.println(attrName + ":");
+		System.out.print("{");
 		for (int i = 0; i < numAttr; i++) {
-			System.out.print(AttrList[i]+" ");
+			if (i < numAttr-1) {
+				System.out.print(AttrList[i]+",");
+			} else {
+				System.out.print(AttrList[i]);
+			}
+			
 		}
-		System.out.println();
+		System.out.println("}");
 	}
 }

@@ -4,6 +4,17 @@ import javax.swing.*;
 
 import java.awt.event.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+
+import model.*;
 
 public class Main extends JFrame {
 	public Main() {
@@ -168,7 +179,47 @@ public class Main extends JFrame {
 	          	    "Error",
 	          	    JOptionPane.ERROR_MESSAGE);
 	  			} else {
+	  				fileConverter fc = new fileConverter();
+	  				try {
+	  					fc.dataToMatrix(start.getFilename());
+	  				} catch (IOException e) {
+	  					// TODO Auto-generated catch block
+	  					e.printStackTrace();
+	  				}
+	  				start.getAttrList().setText("List of Attributes");
 	  				
+	  				String str = new String();
+	  	 			FileInputStream fstream;
+	  	 			
+	  	 			try {
+	  					PrintStream printStream = new PrintStream(new FileOutputStream("output.txt"));
+	  					System.setOut(printStream);
+	  				} catch (FileNotFoundException e) {
+	  					// TODO Auto-generated catch block
+	  					e.printStackTrace();
+	  				}
+
+	  				fc.printMatrixAttrInfo();
+	  				
+	  				try {
+	  					fstream = new FileInputStream(new File("output.txt"));
+	  					BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+	  		 			String strLine;
+	  		 			start.getAttrList().append("\n");
+	  		 			//Read File Line By Line
+	  		 			while ((strLine = br.readLine()) != null)   {
+	  		 				start.getAttrList().append("\n");
+	  		 				start.getAttrList().append(strLine);
+	  					}
+	  					//Close the input stream
+	  					br.close();
+	  				} catch (FileNotFoundException e) {
+	  					// TODO Auto-generated catch block
+	  					e.printStackTrace();
+	  				} catch (IOException e) {
+	  					// TODO Auto-generated catch block
+	  					e.printStackTrace();
+	  				}
 	  			}
 	  		  }
 	  	});

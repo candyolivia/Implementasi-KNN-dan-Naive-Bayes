@@ -18,7 +18,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JTextArea;
 
@@ -30,6 +32,7 @@ public class Start extends JPanel {
 	private JButton filebtn;
 	private JButton analysisbtn;
 	private JTextField fileChosen;
+	private JTextArea attrList;
 	private String filename = new String();
 	
 	public Start() {
@@ -100,8 +103,21 @@ public class Start extends JPanel {
           fileChosen.setLocation(190, 30);
           fileChosen.setSize(400, 40);
           
-        
-          
+        //Text Area
+          attrList = new JTextArea();
+          attrList.setEditable(false);
+          attrList.setBackground(new Color (255,245,157));
+          attrList.setFont(new Font("Arial", Font.BOLD, 12));
+          setLayout(null);
+          Border border = BorderFactory.createLineBorder(Color.BLACK);
+          attrList.setBorder(BorderFactory.createCompoundBorder(border, 
+                      BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+          attrList.setLocation(20, 180);
+          attrList.setSize(170, 350);
+          attrList.setLineWrap(true);
+          attrList.setWrapStyleWord(true);
+          JScrollPane scroll = new JScrollPane (attrList, 
+        		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
           
         //ADD TO PANEL
         //add button
@@ -111,6 +127,7 @@ public class Start extends JPanel {
           add(filebtn);
           add(analysisbtn);
           add(fileChosen);
+          add(attrList);
           
           
        } catch (IOException ex) {
@@ -127,7 +144,6 @@ public class Start extends JPanel {
     	    }
     	});
        
-
        classifybtn.addMouseListener(new java.awt.event.MouseAdapter() {
     	    public void mouseEntered(java.awt.event.MouseEvent evt) {
     	        classifybtn.setSize(155,55);
@@ -167,8 +183,6 @@ public class Start extends JPanel {
  			});
        
  	}
-	
-		
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -222,5 +236,13 @@ public class Start extends JPanel {
 
 	public void setAnalysisbtn(JButton analysisbtn) {
 		this.analysisbtn = analysisbtn;
+	}
+	
+	public JTextArea getAttrList() {
+		return attrList;
+	}
+
+	public void setAttrList(JTextArea attrList) {
+		this.attrList = attrList;
 	}
 }
