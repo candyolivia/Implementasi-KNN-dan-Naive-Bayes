@@ -88,7 +88,8 @@ public class Process {
 			for (int i = 1; i <= 10; i++) {
 				knnFoldCrossValidation(i);
 			}
-			System.out.println("Selected k value\t\t : " + (chooseEffectiveNN()+1));
+			System.out.println("\tSelected k value\t\t : " + (chooseEffectiveNN()+1));
+			
 		} else {
 			float max = 0; int idxmax = 1; float tmp;
 			for (int i = 1; i <= 10; i++) {
@@ -99,10 +100,10 @@ public class Process {
 				}
 			}
 			int trueInstance = (int) (max * numData);
-			System.out.println("Correctly Classified Instances \t : " + trueInstance + "\t\t" + max*100 + "%" );
-			System.out.println("Incorrectly Classified Instances : " + (numData - trueInstance) + "\t\t" + (100 - max*100) + "%");
-			System.out.println("Number of Instances\t\t : " + (numData));
-			System.out.println("Selected k value\t\t : " + idxmax);
+			System.out.println("\tCorrectly Classified Instances \t\t : " + trueInstance + "       " + max*100 + "%" );
+			System.out.println("\tIncorrectly Classified Instances \t : " + (numData - trueInstance) + "       " + (100 - max*100) + "%");
+			System.out.println("\tNumber of Instances\t\t : " + (numData));
+			System.out.println("\tSelected k value\t\t : " + idxmax);
 		}
 	}
 	
@@ -235,9 +236,9 @@ public class Process {
 			}
 		}
 		int trueInstance = (int) (max * numData);
-		System.out.println("Correctly Classified Instances \t : " + trueInstance + "\t\t" + max*100 + "%" );
-		System.out.println("Incorrectly Classified Instances : " + (numData - trueInstance) + "\t\t" + (100 - max*100) + "%");
-		System.out.println("Number of Instances\t\t : " + (numData));
+		System.out.println("\tCorrectly Classified Instances \t\t : " + trueInstance + "       " + max*100 + "%" );
+		System.out.println("\tIncorrectly Classified Instances \t : " + (numData - trueInstance) + "       " + (100 - max*100) + "%");
+		System.out.println("\tNumber of Instances\t\t : " + (numData));
 		return idxmax;
 	}
 	

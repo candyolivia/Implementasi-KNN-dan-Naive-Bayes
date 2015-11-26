@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.awt.*;
 
@@ -138,16 +139,40 @@ public class Main extends JFrame {
 		start.getClassifybtn().addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 		    // ... called when button clicked
-			  contentPane.remove(start);
-			  contentPane.add(classify);
-	            contentPane.revalidate();
-	            contentPane.repaint();
-	            pack();
-	            setSize (800,590);
-	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	            setResizable(false);
+			  if (start.getFilename().equals("")) {
+				  JOptionPane.showMessageDialog(start,
+                  	    "Error! File hasn't been chosen!",
+                  	    "Error",
+                  	    JOptionPane.ERROR_MESSAGE);
+			  } else {
+				  classify.setFilename(start.getFilename());
+				  System.out.println(classify.getFilename());
+				  contentPane.remove(start);
+				  contentPane.add(classify);
+				  contentPane.revalidate();
+				  contentPane.repaint();
+				  pack();
+				  setSize (800,590);
+				  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				  setResizable(false);  
+			  }
+			  
 		  }
 		});
+		
+		start.getAnalysisbtn().addActionListener(new ActionListener() {
+	  		  public void actionPerformed(ActionEvent evt) {
+	  			if (start.getFilename().equals("")) {
+	  				JOptionPane.showMessageDialog(start,
+	          	    "Error! File hasn't been chosen!",
+	          	    "Error",
+	          	    JOptionPane.ERROR_MESSAGE);
+	  			} else {
+	  				
+	  			}
+	  		  }
+	  	});
+		
 				
 		//OnClick Preprocess Button
 		classify.getPreprocessbtn().addActionListener(new ActionListener() {
@@ -170,5 +195,6 @@ public class Main extends JFrame {
 		JFrame f = new Main();
 		f.setIconImage(icon.getImage());
 		f.show();
+		
 	}
 }

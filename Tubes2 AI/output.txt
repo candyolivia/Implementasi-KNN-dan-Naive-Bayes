@@ -1,0 +1,9 @@
+	Correctly Classified Instances 		 : 7       53.571426%
+	Incorrectly Classified Instances 	 : 7       46.428574%
+	Number of Instances		 : 14
+	Selected k value		 : 6
+C:\Users\User\Documents\GitHub\Implementasi-KNN-dan-Naive-Bayes\Tubes2 AI\weather.nominal.arff
+C:\Users\User\Documents\GitHub\Implementasi-KNN-dan-Naive-Bayes\Tubes2 AI\weather.nominal.arff
+C:\Users\User\Documents\GitHub\Implementasi-KNN-dan-Naive-Bayes\Tubes2 AI\weather.nominal.arff
+C:\Users\User\Documents\GitHub\Implementasi-KNN-dan-Naive-Bayes\Tubes2 AI\weather.nominal.arff
+C:\Users\User\Documents\GitHub\Implementasi-KNN-dan-Naive-Bayes\Tubes2 AI\weather.nominal.arff

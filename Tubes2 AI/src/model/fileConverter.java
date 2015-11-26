@@ -1,6 +1,7 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -59,7 +60,7 @@ public class fileConverter {
 		int lineSkip = 2;
 		
 		// Open the file
-		FileInputStream fstream = new FileInputStream(filename);
+		FileInputStream fstream = new FileInputStream(new File(filename));
 		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 		String strLine;
 		

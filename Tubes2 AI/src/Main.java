@@ -1,11 +1,23 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import knn.Process;
 import naivebayes.*;
 
 public class Main {
-	public static void main (String args[]) {
+	public static void main (String args[]) throws IOException {
+		PrintStream printStream = new PrintStream(new FileOutputStream("output.txt"));
+		
+		
 		Scanner sc = new Scanner(System.in);
+		System.setOut(printStream);
 		System.out.print("File Name : ");
 		String filename = sc.nextLine();
 		
@@ -45,11 +57,8 @@ public class Main {
 				nbFull.predictFullTraining();
 			}
 			
-			 
-			
-			
-			
 		}
 		System.out.println("==================================================================");
+		
 	}
 }

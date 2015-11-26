@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -29,6 +30,7 @@ public class Start extends JPanel {
 	private JButton filebtn;
 	private JButton analysisbtn;
 	private JTextField fileChosen;
+	private String filename = new String();
 	
 	public Start() {
        try {   
@@ -98,6 +100,8 @@ public class Start extends JPanel {
           fileChosen.setLocation(190, 30);
           fileChosen.setSize(400, 40);
           
+        
+          
           
         //ADD TO PANEL
         //add button
@@ -157,12 +161,14 @@ public class Start extends JPanel {
  		            System.out.println("You choose to open this file: " +
  		                 chooser.getSelectedFile().getAbsolutePath());
  		            fileChosen.setText(chooser.getSelectedFile().getAbsolutePath());
+ 		            filename = chooser.getSelectedFile().getAbsolutePath();
  		         }
  			  }
  			});
        
-     
-	}
+ 	}
+	
+		
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -200,5 +206,21 @@ public class Start extends JPanel {
 
 	public void setClassifybtn(JButton classifybtn) {
 		this.classifybtn = classifybtn;
+	}
+	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	
+	public JButton getAnalysisbtn() {
+		return analysisbtn;
+	}
+
+	public void setAnalysisbtn(JButton analysisbtn) {
+		this.analysisbtn = analysisbtn;
 	}
 }
