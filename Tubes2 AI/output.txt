@@ -1,4 +1,14 @@
-	Correctly Classified Instances 		 : 7       53.571426%
-	Incorrectly Classified Instances 	 : 7       46.428574%
-	Number of Instances		 : 14
-	Selected k value		 : 6
+buying:
+{vhigh,high,med,low}
+maint:
+{vhigh,high,med,low}
+doors:
+{2,3,4,5more}
+persons:
+{2,4,more}
+lug_boot:
+{small,med,big}
+safety:
+{low,med,high}
+Class:
+{unacc,acc,good,vgood}

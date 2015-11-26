@@ -34,6 +34,8 @@ public class Start extends JPanel {
 	private JTextField fileChosen;
 	private JTextArea attrList;
 	private String filename = new String();
+	private BarChart_AWT chartCanvas;
+	private JPanel pan;
 	
 	public Start() {
        try {   
@@ -119,6 +121,13 @@ public class Start extends JPanel {
           JScrollPane scroll = new JScrollPane (attrList, 
         		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
           
+       //Bar Chart
+        chartCanvas = new BarChart_AWT("");
+ 	    pan = chartCanvas.createDemoPanel();
+ 	    setLayout(null);
+ 	    pan.setLocation(220, 90);
+        pan.setSize(500, 400);
+ 	     
         //ADD TO PANEL
         //add button
           add(preprocessbtn);
@@ -128,6 +137,7 @@ public class Start extends JPanel {
           add(analysisbtn);
           add(fileChosen);
           add(attrList);
+          add(pan);
           
           
        } catch (IOException ex) {
@@ -234,6 +244,14 @@ public class Start extends JPanel {
 		return analysisbtn;
 	}
 
+	public BarChart_AWT getChartCanvas() {
+		return chartCanvas;
+	}
+
+	public void setChartCanvas(BarChart_AWT chartCanvas) {
+		this.chartCanvas = chartCanvas;
+	}
+
 	public void setAnalysisbtn(JButton analysisbtn) {
 		this.analysisbtn = analysisbtn;
 	}
@@ -244,5 +262,13 @@ public class Start extends JPanel {
 
 	public void setAttrList(JTextArea attrList) {
 		this.attrList = attrList;
+	}
+
+	public JPanel getPan() {
+		return pan;
+	}
+
+	public void setPan(JPanel pan) {
+		this.pan = pan;
 	}
 }

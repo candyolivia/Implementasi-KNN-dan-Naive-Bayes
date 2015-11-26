@@ -209,5 +209,13 @@ public class fileConverter {
 		return attrInfo;
 	}
 
+	public int[][][] getMatrixChartData() {
+		return matrixChartData;
+	}
+
+	public void setMatrixChartData(int[][][] matrixChartData) {
+		this.matrixChartData = matrixChartData;
+	}
+
 	
 }

@@ -186,6 +186,10 @@ public class Main extends JFrame {
 	  					// TODO Auto-generated catch block
 	  					e.printStackTrace();
 	  				}
+	  				
+	  				//Setting the barChart
+	  				//start.setPan(start.getChartCanvas().createDemoPanel(start.getChartCanvas().createDataset(fc, start.getFilename()),"aaaa"));
+	  				
 	  				start.getAttrList().setText("List of Attributes");
 	  				
 	  				String str = new String();
