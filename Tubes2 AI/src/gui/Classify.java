@@ -26,6 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.ScrollPaneConstants;
 
 import knn.Process;
 import model.AttrInfo;
@@ -45,6 +46,7 @@ public class Classify extends JPanel {
 	private JTextArea areaResult;
 	private final static String newline = "\n";
 	private String filename = new String();
+	private JScrollPane scroll;
 
 	
 	public Classify() {
@@ -136,8 +138,14 @@ public class Classify extends JPanel {
           areaResult.setSize(540, 350);
           areaResult.setLineWrap(true);
           areaResult.setWrapStyleWord(true);
-          JScrollPane scroll = new JScrollPane (areaResult, 
-        		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+		//create scrollbar
+		scroll = new JScrollPane (areaResult);
+		scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+		setLayout(null);
+		
+			
+	 		 
           
         //Add to Panel
           add(preprocessbtn);
@@ -236,18 +244,22 @@ public class Classify extends JPanel {
  			} else if (algorithm.getSelectedIndex() == 1) {
  				
  				if (schema.getSelectedIndex() == 2) {
- 					areaResult.setText("\n      RESULT :\n"+
-		 					 "  ==========================================================================  \n" +
-		 					 "                        Test Mode : Naive-Bayes 10-fold Cross Validation                 \n" + 
-		 					 "  ==========================================================================  \n");
  					NaiveBayes nbFCV = new NaiveBayes(filename);
+ 					System.out.println("  ==========================================================================  \n" +
+		 					 "  	                Test Mode : Naive-Bayes 10-fold Cross Validation                 \n" + 
+		 					 "  ==========================================================================  \n");
+ 					System.out.println("      HYPOTHESIS");
+ 					nbFCV.getDataModel().printHypothesis();
+ 					System.out.println("\n      RESULT :\n");
  					nbFCV.predictFoldCV(filename);
  				} else if (schema.getSelectedIndex() == 1){
  					NaiveBayes nbFull = new NaiveBayes(filename);
- 					areaResult.setText("\n      RESULT :\n"+
-		 					 "  ==========================================================================  \n" +
-		 					 "                        Test Mode : Naive-Bayes 10-fold Cross Validation                 \n" + 
+ 					System.out.println("  ==========================================================================  \n" +
+		 					 "  	                         Test Mode : Naive-Bayes Full Training                 \n" + 
 		 					 "  ==========================================================================  \n");
+ 					System.out.println("      HYPOTHESIS");
+ 					nbFull.getDataModel().printHypothesis();
+ 					System.out.println("\n      RESULT :\n");
  					nbFull.predictFullTraining();
  				}	
  			}
@@ -275,7 +287,10 @@ public class Classify extends JPanel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			
  		  }
+ 		 
  		});
 	}
 	
