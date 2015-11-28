@@ -9,11 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,6 +25,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.RefineryUtilities;
+
+import model.fileConverter;
+
 import javax.swing.JTextArea;
 
 public class Start extends JPanel {
@@ -31,11 +45,12 @@ public class Start extends JPanel {
 	private JButton backbtn;
 	private JButton filebtn;
 	private JButton analysisbtn;
+	private JButton graphbtn;
 	private JTextField fileChosen;
-	private JTextArea attrList;
+	private JTextArea attrList; //output
 	private String filename = new String();
-	private BarChart_AWT chartCanvas;
-	private JPanel pan;
+	private JComboBox attribute;
+	private List<String> attributelist = new ArrayList<String>();
 	
 	public Start() {
        try {   
@@ -121,13 +136,23 @@ public class Start extends JPanel {
           JScrollPane scroll = new JScrollPane (attrList, 
         		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
           
-       //Bar Chart
-        chartCanvas = new BarChart_AWT("");
- 	    pan = chartCanvas.createDemoPanel();
- 	    setLayout(null);
- 	    pan.setLocation(220, 90);
-        pan.setSize(500, 400);
- 	     
+        //Combo List
+          attributelist.add("--Please Select Your Attribute--");
+          attribute = new JComboBox();
+          setLayout(null);
+          attribute.setLocation(190, 80);
+          attribute.setSize(300, 40);
+          
+        //Graph Button
+          graphbtn = new JButton();
+          setLayout(null);
+          graphbtn.setText("Graph");
+          graphbtn.setFont(new Font("Arial", Font.BOLD, 12));
+          graphbtn.setLocation(500, 80);
+          graphbtn.setSize(90, 40);
+          graphbtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+          
+          
         //ADD TO PANEL
         //add button
           add(preprocessbtn);
@@ -137,7 +162,8 @@ public class Start extends JPanel {
           add(analysisbtn);
           add(fileChosen);
           add(attrList);
-          add(pan);
+          add(attribute);
+          add(graphbtn);
           
           
        } catch (IOException ex) {
@@ -154,6 +180,7 @@ public class Start extends JPanel {
     	    }
     	});
        
+
        classifybtn.addMouseListener(new java.awt.event.MouseAdapter() {
     	    public void mouseEntered(java.awt.event.MouseEvent evt) {
     	        classifybtn.setSize(155,55);
@@ -190,9 +217,59 @@ public class Start extends JPanel {
  		            filename = chooser.getSelectedFile().getAbsolutePath();
  		         }
  			  }
- 			});
+ 		});
        
+     //Bar Charts
+       /*BarChart_AWT chart = new BarChart_AWT("Car Usage Statistics", "Which car do you like?");
+       chart.pack( );        
+       RefineryUtilities.centerFrameOnScreen( chart );        
+       chart.setVisible( true );*/
+       
+       analysisbtn.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			//empty the container first
+ 		   attribute.removeAllItems();
+ 		   
+ 		   for (int i = 0; i < attributelist.size(); i++)
+ 			   attribute.addItem(attributelist.get(i)); //insert the element into container
+		}
+	});
+       
+       graphbtn.addActionListener(new ActionListener(){
+    	   public void actionPerformed(ActionEvent evt){
+    		   
+    		   
+    		   fileConverter fileConv = new fileConverter();
+    		   try {
+    			   fileConv.readFile(filename);
+    		   } catch (IOException e) {
+					// TODO Auto-generated catch block
+    			   e.printStackTrace();
+    		   }
+    		   
+			   DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+			   dataset.setValue(10, "tes1", "Data1");
+			   dataset.setValue(3, "tes2", "Data2");
+			   dataset.setValue(6, "tes3", "Data3");
+			
+			   JFreeChart chart = ChartFactory.createBarChart("", "", "", dataset, PlotOrientation.VERTICAL, false, false, false);
+			   CategoryPlot catPlot = chart.getCategoryPlot();
+			   catPlot.setRangeGridlinePaint(Color.BLACK);
+			
+			   ChartPanel chartPanel = new ChartPanel(chart);
+			   chartPanel.setLocation(300, 170);
+			   chartPanel.setSize(400, 350);
+			   chartPanel.setOpaque(false);
+			   chartPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			   add(chartPanel);
+    	   }
+       });
  	}
+	
+		
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -244,31 +321,19 @@ public class Start extends JPanel {
 		return analysisbtn;
 	}
 
-	public BarChart_AWT getChartCanvas() {
-		return chartCanvas;
-	}
-
-	public void setChartCanvas(BarChart_AWT chartCanvas) {
-		this.chartCanvas = chartCanvas;
-	}
-
 	public void setAnalysisbtn(JButton analysisbtn) {
 		this.analysisbtn = analysisbtn;
 	}
 	
-	public JTextArea getAttrList() {
+	public JTextArea getAttrList(){
 		return attrList;
 	}
-
-	public void setAttrList(JTextArea attrList) {
-		this.attrList = attrList;
+	
+	public void setAttrList(){
+		
 	}
-
-	public JPanel getPan() {
-		return pan;
-	}
-
-	public void setPan(JPanel pan) {
-		this.pan = pan;
+	
+	public List<String> getAttributelist(){
+		return attributelist;
 	}
 }

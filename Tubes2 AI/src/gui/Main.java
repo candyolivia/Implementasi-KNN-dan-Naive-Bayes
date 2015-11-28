@@ -205,6 +205,9 @@ public class Main extends JFrame {
 
 	  				fc.printMatrixAttrInfo();
 	  				
+	  				// empty the list
+	  				start.getAttributelist().clear();
+	  				
 	  				try {
 	  					fstream = new FileInputStream(new File("output.txt"));
 	  					BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -214,6 +217,9 @@ public class Main extends JFrame {
 	  		 			while ((strLine = br.readLine()) != null)   {
 	  		 				start.getAttrList().append("\n");
 	  		 				start.getAttrList().append(strLine);
+	  		 				if(strLine.endsWith(":"))
+	  		 					// insert the attribute without ':' character
+	  		 					start.getAttributelist().add(strLine.substring(0, strLine.length()-1));
 	  					}
 	  					//Close the input stream
 	  					br.close();
