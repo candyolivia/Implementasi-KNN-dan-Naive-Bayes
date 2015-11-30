@@ -51,6 +51,8 @@ public class Start extends JPanel {
 	private String filename = new String();
 	private JComboBox attribute;
 	private List<String> attributelist = new ArrayList<String>();
+	private ChartPanel chartPanel;
+	private ArrayList<ArrayList<Integer>> graphContainer = new ArrayList<ArrayList<Integer>>();
 	
 	public Start() {
        try {   
@@ -239,32 +241,46 @@ public class Start extends JPanel {
 	});
        
        graphbtn.addActionListener(new ActionListener(){
-    	   public void actionPerformed(ActionEvent evt){
+    	   public void actionPerformed(ActionEvent evt){    		   
     		   
+    		   DefaultCategoryDataset dataset = new DefaultCategoryDataset();
     		   
-    		   fileConverter fileConv = new fileConverter();
+    		   fileConverter fc = new fileConverter();
     		   try {
-    			   fileConv.readFile(filename);
+    			   fc.dataToMatrix(filename);
     		   } catch (IOException e) {
 					// TODO Auto-generated catch block
     			   e.printStackTrace();
     		   }
     		   
-			   DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-			   dataset.setValue(10, "tes1", "Data1");
+    		   fc.convertDataToInteger();
+    		   fc.dataToChartMatrix();    		   
+    		   
+    		   int i = 0;
+    		   //for (int j = 0; j < fc.getMatrixAttrInfo().size()-1; j++) {
+    		   int j = attribute.getSelectedIndex();
+    		   for (int k = 0; k < fc.getMatrixAttrInfo().get(j).getNumAttr(); k++) {
+    			   System.out.println(fc.getMatrixAttrInfo().get(fc.getMatrixAttrInfo().size()-1).getAttrListN(i) + " " + fc.getMatrixAttrInfo().get(j).getAttrListN(k) + " ");
+    			   dataset.addValue( fc.getMatrixChartData()[i][j][k] , fc.getMatrixAttrInfo().get(fc.getMatrixAttrInfo().size()-1).getAttrListN(i) , fc.getMatrixAttrInfo().get(j).getAttrListN(k) );
+    			   
+    		   }
+    		   
+    		   
+			   /*dataset.setValue(10, "tes1", "Data1");
 			   dataset.setValue(3, "tes2", "Data2");
-			   dataset.setValue(6, "tes3", "Data3");
+			   dataset.setValue(6, "tes3", "Data3");*/
 			
 			   JFreeChart chart = ChartFactory.createBarChart("", "", "", dataset, PlotOrientation.VERTICAL, false, false, false);
 			   CategoryPlot catPlot = chart.getCategoryPlot();
 			   catPlot.setRangeGridlinePaint(Color.BLACK);
 			
-			   ChartPanel chartPanel = new ChartPanel(chart);
+			   chartPanel = new ChartPanel(chart);
 			   chartPanel.setLocation(300, 170);
 			   chartPanel.setSize(400, 350);
 			   chartPanel.setOpaque(false);
 			   chartPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			   add(chartPanel);
+			   revalidate();
     	   }
        });
  	}
@@ -335,5 +351,9 @@ public class Start extends JPanel {
 	
 	public List<String> getAttributelist(){
 		return attributelist;
+	}
+	
+	public ChartPanel getChartPanel(){
+		return chartPanel;
 	}
 }

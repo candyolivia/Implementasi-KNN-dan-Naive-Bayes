@@ -173,6 +173,11 @@ public class Main extends JFrame {
 		
 		start.getAnalysisbtn().addActionListener(new ActionListener() {
 	  		  public void actionPerformed(ActionEvent evt) {
+	  			if(start.getChartPanel() != null){
+	  				contentPane.remove(start.getChartPanel());
+	  				contentPane.revalidate();
+	  			}
+	  			  
 	  			if (start.getFilename().equals("")) {
 	  				JOptionPane.showMessageDialog(start,
 	          	    "Error! File hasn't been chosen!",
@@ -231,6 +236,7 @@ public class Main extends JFrame {
 	  					e.printStackTrace();
 	  				}
 	  			}
+	  			contentPane.repaint();
 	  		  }
 	  	});
 		
