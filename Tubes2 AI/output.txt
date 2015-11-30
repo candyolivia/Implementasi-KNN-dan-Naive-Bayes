@@ -1,10 +1,4 @@
-outlook:
-{sunny,overcast,rainy}
-temperature:
-{hot,mild,cool}
-humidity:
-{high,normal}
-windy:
-{TRUE,FALSE}
-play:
-{yes,no}
+	Correctly Classified Instances 		 : 1423       82.37849%
+	Incorrectly Classified Instances 	 : 305       17.621513%
+	Number of Instances		 : 1728
+	Selected k value		 : 6

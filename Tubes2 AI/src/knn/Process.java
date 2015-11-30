@@ -17,7 +17,17 @@ public class Process {
 	private double[][] percentage;
 	private int mode = 1; //Mode 1 for KNN 10-Fold Cross Validation (default)
 						//Mode 2 for KNN Full Training
+	private int[] analyseClass = new int[6]; // numAttr+1 for cardata.arff
 	
+	
+	public int[] getAnalyseClass() {
+		return analyseClass;
+	}
+
+	public void setAnalyseClass(int[] analyseClass) {
+		this.analyseClass = analyseClass;
+	}
+
 	public int getNumData() {
 		return numData;
 	}
@@ -39,6 +49,11 @@ public class Process {
 	}
 	
 	public void init(String filename) {
+		//ini data dummy untuk menentukan kelas
+		for (int i = 0; i < 6; i++) {
+			analyseClass[i] = 1;
+		}
+		
 		fileConverter fc = new fileConverter();
 		try {
 			fc.dataToMatrix(filename);
@@ -242,6 +257,8 @@ public class Process {
 		return idxmax;
 	}
 	
+	
+	
 	public void printMatrixData() {
 		for (int i = 0; i < numData; i++) {
 			for (int j = 0; j < numAttr; j++) {
@@ -278,8 +295,42 @@ public class Process {
 		}
 	}
 	
+	public int countDifferentArr(int[] dataTraining, int[] dataTesting) {
+		int count = 0;
+		for (int i = 0; i < 6; i++) {
+			//System.out.println(dataTraining[i]+ " " + dataTesting[i]);
+			if (dataTraining[i] != dataTesting[i]) {
+				count++;
+				//System.out.println(dataTraining[i]+ " " + dataTesting[i]);
+			}
+		}
+		return count;
+	}
 	
+	public void printAnalyseClass() {
+		for (int i = 0; i < 6; i++)
+			System.out.print(analyseClass[i]+" ");
+	}
 	
-	
-	
+	public int determineClassCarData() {
+		//numNN default 1
+		int[] dataTmp = new int[6];
+		
+		int distance = 0;
+		int determinedClass = 0;
+		
+		for (int i = 0; i < numData; i++) {
+			for (int j = 0; j < 6; j++) {
+				dataTmp[j] = matrixData[i][j];
+				//System.out.print(matrixData[i][j]+" ");
+			}
+			//System.out.println();
+			if (countDifferentArr(analyseClass,dataTmp) == distance) {
+				determinedClass = matrixData[i][numAttr-1];
+				System.out.println(i);
+				break;
+			}
+		}
+		return determinedClass;
+	}
 }

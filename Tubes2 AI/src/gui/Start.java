@@ -90,10 +90,10 @@ public class Start extends JPanel {
           backbtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
           
         //Open File button
-          filebtn = new JButton(new ImageIcon("images/openfilebutton.png"));
+          filebtn = new JButton(new ImageIcon("images/openfilebtn.png"));
           setLayout(null);
-          filebtn.setLocation(600, 20);
-          filebtn.setSize(70, 70);
+          filebtn.setLocation(600, 15);
+          filebtn.setSize(180, 60);
           filebtn.setOpaque(false);
           filebtn.setContentAreaFilled(false);
           filebtn.setBorderPainted(false);
@@ -103,8 +103,8 @@ public class Start extends JPanel {
         //Analysis button
           analysisbtn = new JButton(new ImageIcon("images/analysisbutton.png"));
           setLayout(null);
-          analysisbtn.setLocation(660, 20);
-          analysisbtn.setSize(70, 70);
+          analysisbtn.setLocation(600, 70);
+          analysisbtn.setSize(180, 60);
           analysisbtn.setOpaque(false);
           analysisbtn.setContentAreaFilled(false);
           analysisbtn.setBorderPainted(false);
