@@ -249,7 +249,7 @@ public class DetermineClass extends JPanel {
 		 					 "  	                Test Mode : Naive-Bayes 10-fold Cross Validation                 \n" + 
 		 					 "  ==========================================================================  \n");
  					System.out.println("      HYPOTHESIS");
- 					nbFCV.getDataModel().printHypothesis();
+ 					nbFCV.getDataModel().stringHypothesis();
  					System.out.println("\n      RESULT :\n");
  					nbFCV.predictFoldCV(filename);
  				} else if (schema.getSelectedIndex() == 1){
@@ -258,7 +258,7 @@ public class DetermineClass extends JPanel {
 		 					 "  	                         Test Mode : Naive-Bayes Full Training                 \n" + 
 		 					 "  ==========================================================================  \n");
  					System.out.println("      HYPOTHESIS");
- 					nbFull.getDataModel().printHypothesis();
+ 					nbFull.getDataModel().stringHypothesis();
  					System.out.println("\n      RESULT :\n");
  					nbFull.predictFullTraining();
  				}	

@@ -40,6 +40,7 @@ public class Classify extends JPanel {
 	private JButton generatebtn;
 	private JButton backbtn;
 	private JButton predictclassbtn;
+	private JButton hypobtn;
 	private JComboBox algorithm;
 	private JComboBox schema;
 	private JLabel algolabel;
@@ -48,6 +49,7 @@ public class Classify extends JPanel {
 	private final static String newline = "\n";
 	private String filename = new String();
 	private JScrollPane scroll;
+	private StringBuffer hypothesis = new StringBuffer();
 	
 	public Classify() {
        try {   
@@ -78,7 +80,7 @@ public class Classify extends JPanel {
           classifybtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
           
         //Back button
-          backbtn = new JButton(new ImageIcon("images/backbutton.png"));
+          backbtn = new JButton(new ImageIcon("images/homebutton.png"));
           setLayout(null);
           backbtn.setLocation(20, 120);
           backbtn.setSize(150, 50);
@@ -102,10 +104,20 @@ public class Classify extends JPanel {
           setLayout(null);
           predictclassbtn.setText("Predict Class");
           predictclassbtn.setFont(new Font("Arial", Font.BOLD, 12));
-          predictclassbtn.setLocation(580, 500);
+          predictclassbtn.setLocation(480, 500);
           predictclassbtn.setSize(180, 35);
           predictclassbtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
           predictclassbtn.setVisible(false);
+          
+        //hypo button
+          hypobtn = new JButton();
+          setLayout(null);
+          hypobtn.setText("Show Hypothesis");
+          hypobtn.setFont(new Font("Arial", Font.BOLD, 12));
+          hypobtn.setLocation(290, 500);
+          hypobtn.setSize(180, 35);
+          hypobtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+          hypobtn.setVisible(false);
       
         //Combo List
           String[] algolist = { "--Please Select Your Algorithm--", "Naive-Bayes", "k-Nearest Neighbours" };
@@ -170,6 +182,7 @@ public class Classify extends JPanel {
           add(scroll);
           add(generatebtn);
           add(predictclassbtn);
+          add(hypobtn);
           
        } catch (IOException ex) {
             // handle exception...
@@ -225,10 +238,14 @@ public class Classify extends JPanel {
  		generatebtn.addActionListener(new ActionListener() {
  		  public void actionPerformed(ActionEvent evt) {
  		    // ... called when button clicked
+ 			  
+ 			 areaResult.setText("");
  			 System.out.println("algo: " + algorithm.getSelectedIndex() + "   "
  	 	              + "schema  : " + schema.getSelectedIndex());
  			if (filename.endsWith("cardata.arff")) {
  	        	predictclassbtn.setVisible(true);
+ 	  		 } else {
+ 	  			predictclassbtn.setVisible(false);
  	  		 }
  			try {
 				PrintStream printStream = new PrintStream(new FileOutputStream("output.txt"));
@@ -239,6 +256,7 @@ public class Classify extends JPanel {
 			}
  			
  			if (algorithm.getSelectedIndex() == 2) {
+ 				hypobtn.setVisible(false);
  				Process p = new Process(filename);
  				p.setMode(schema.getSelectedIndex());
  				
@@ -256,14 +274,14 @@ public class Classify extends JPanel {
  				p.doKNN();
  				
  			} else if (algorithm.getSelectedIndex() == 1) {
- 				
+ 				hypobtn.setVisible(true);
  				if (schema.getSelectedIndex() == 2) {
  					NaiveBayes nbFCV = new NaiveBayes(filename);
  					System.out.println("  ==========================================================================  \n" +
 		 					 "  	                Test Mode : Naive-Bayes 10-fold Cross Validation                 \n" + 
 		 					 "  ==========================================================================  \n");
  					System.out.println("      HYPOTHESIS");
- 					nbFCV.getDataModel().printHypothesis();
+ 					hypothesis = nbFCV.getDataModel().stringHypothesis();
  					System.out.println("\n      RESULT :\n");
  					nbFCV.predictFoldCV(filename);
  				} else if (schema.getSelectedIndex() == 1){
@@ -272,7 +290,7 @@ public class Classify extends JPanel {
 		 					 "  	                         Test Mode : Naive-Bayes Full Training                 \n" + 
 		 					 "  ==========================================================================  \n");
  					System.out.println("      HYPOTHESIS");
- 					nbFull.getDataModel().printHypothesis();
+ 					hypothesis = nbFull.getDataModel().stringHypothesis();
  					System.out.println("\n      RESULT :\n");
  					nbFull.predictFullTraining();
  				}	
@@ -307,6 +325,7 @@ public class Classify extends JPanel {
  		  }
  		 
  		});
+ 		
 	}
 	
 	@Override
@@ -363,6 +382,39 @@ public class Classify extends JPanel {
 	public void setPredictclassbtn(JButton predictclassbtn) {
 		this.predictclassbtn = predictclassbtn;
 	}
+
+	public JButton getGeneratebtn() {
+		return generatebtn;
+	}
+
+	public void setGeneratebtn(JButton generatebtn) {
+		this.generatebtn = generatebtn;
+	}
+
+	public JButton getHypobtn() {
+		return hypobtn;
+	}
+
+	public void setHypobtn(JButton hypobtn) {
+		this.hypobtn = hypobtn;
+	}
+
+	public StringBuffer getHypothesis() {
+		return hypothesis;
+	}
+
+	public void setHypothesis(StringBuffer hypothesis) {
+		this.hypothesis = hypothesis;
+	}
+
+	public JTextArea getAreaResult() {
+		return areaResult;
+	}
+
+	public void setAreaResult(JTextArea areaResult) {
+		this.areaResult = areaResult;
+	}
+	
 	
 	
 }

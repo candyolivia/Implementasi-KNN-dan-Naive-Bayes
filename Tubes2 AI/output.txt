@@ -1,53 +1,50 @@
-  ==========================================================================  
-  	                Test Mode : Naive-Bayes 10-fold Cross Validation                 
-  ==========================================================================  
-
-      HYPOTHESIS
-
-   	      unacc	      acc	      good	      vgood	
-      buying
-         high  	       324	       108	       0	       0	
-         low  	       258	       89	       46	       39	
-         med  	       268	       115	       23	       26	
-         vhigh  	       360	       72	       0	       0	
-         Total	       1210	       384	       69	       65	
-
-      maint
-         high  	       314	       105	       0	       13	
-         low  	       268	       92	       46	       26	
-         med  	       268	       115	       23	       26	
-         vhigh  	       360	       72	       0	       0	
-         Total	       1210	       384	       69	       65	
-
-      doors
-         2  	       326	       81	       15	       10	
-         3  	       300	       99	       18	       15	
-         4  	       292	       102	       18	       20	
-         5more  	       292	       102	       18	       20	
-         Total	       1210	       384	       69	       65	
-
-      persons
-         2  	       576	       0	       0	       0	
-         4  	       312	       198	       36	       30	
-         more  	       322	       186	       33	       35	
-         Total	       1210	       384	       69	       65	
-
-      lug_boot
-         small  	       450	       105	       21	       0	
-         big  	       368	       144	       24	       40	
-         med  	       392	       135	       24	       25	
-         Total	       1210	       384	       69	       65	
-
-      safety
-         high  	       277	       204	       30	       65	
-         low  	       576	       0	       0	       0	
-         med  	       357	       180	       39	       0	
-         Total	       1210	       384	       69	       65	
-
-
-      RESULT :
-
-Correctly Classified Instances		: 1503
-Incorrectly Classified Instances	: 225
-Number of Instances			: 1728
-Accuracy				: 87.38371%
+outlook:
+{sunny,overcast,rainy}
+temperature:
+{hot,mild,cool}
+humidity:
+{high,normal}
+windy:
+{TRUE,FALSE}
+play:
+{yes,no}
+0 0 0 1 1 
+0 0 0 0 1 
+1 0 0 1 0 
+2 1 0 1 0 
+2 2 1 1 0 
+2 2 1 0 1 
+1 2 1 0 0 
+0 1 0 1 1 
+0 2 1 1 0 
+2 1 1 1 0 
+0 1 1 0 0 
+1 1 0 0 0 
+1 0 1 1 0 
+2 1 0 0 1 
+5 5
+Jumlah kelas : 2
+Jumlah attribute : 4
+yes sunny 
+yes overcast 
+yes rainy 
+yes hot 
+yes mild 
+yes cool 
+yes high 
+yes normal 
+yes TRUE 
+yes FALSE 
+no sunny 
+no overcast 
+no rainy 
+no hot 
+no mild 
+no cool 
+no high 
+no normal 
+no TRUE 
+no FALSE 
+yes sunny 
+yes overcast 
+yes rainy 

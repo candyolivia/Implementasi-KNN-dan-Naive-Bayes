@@ -47,7 +47,7 @@ public class Main extends JFrame {
 		Start start = new Start();
 		Classify classify = new Classify();
 		DetermineClass detclass = new DetermineClass();
-		Scrollbar scroll = new Scrollbar();
+		Hypothesis hypo = new Hypothesis();
 		
 		//OnClick About Button
 		home.getAboutbtn().addActionListener(new ActionListener() {
@@ -123,13 +123,13 @@ public class Main extends JFrame {
 		start.getBackbtn().addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 		    // ... called when button clicked
-			  contentPane.remove(start);
-			  contentPane.add(home);
-	            contentPane.revalidate();
-	            contentPane.repaint();
-	            pack();
-	            setSize (800,590);
-	            setResizable(false);
+		  	contentPane.remove(start);
+			contentPane.add(home);
+            contentPane.revalidate();
+            contentPane.repaint();
+            pack();
+            setSize (800,590);
+            setResizable(false);
 		  }
 		});
 		
@@ -137,6 +137,8 @@ public class Main extends JFrame {
 		classify.getBackbtn().addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 		    // ... called when button clicked
+			  classify.getHypobtn().setVisible(false);
+			  classify.getPredictclassbtn().setVisible(false);
 			  contentPane.remove(classify);
 			  contentPane.add(home);
 	            contentPane.revalidate();
@@ -192,9 +194,6 @@ public class Main extends JFrame {
 	  					e.printStackTrace();
 	  				}
 	  				
-	  				//Setting the barChart
-	  				//start.setPan(start.getChartCanvas().createDemoPanel(start.getChartCanvas().createDataset(fc, start.getFilename()),"aaaa"));
-	  				
 	  				start.getAttrList().setText("List of Attributes");
 	  				
 	  				String str = new String();
@@ -246,6 +245,8 @@ public class Main extends JFrame {
 		  public void actionPerformed(ActionEvent evt) {
 		    // ... called when button clicked
 				contentPane.remove(classify);
+				classify.getHypobtn().setVisible(false);
+				classify.getPredictclassbtn().setVisible(false);
 				contentPane.add(start);
 				contentPane.remove(classify.getPredictclassbtn());
 	            contentPane.revalidate();
@@ -269,6 +270,42 @@ public class Main extends JFrame {
 	            setResizable(false);
 		  }
 		});
+		
+		
+		//OnClick Hypothesis Button
+		classify.getHypobtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+			  // ... called when button clicked
+			  	contentPane.remove(classify);
+	   			hypo.setContent(classify.getHypothesis());
+				hypo.getAreaText().setText(hypo.getContent().toString());
+				classify.getAreaResult().setText("");
+	   			contentPane.add(hypo);
+				
+	            contentPane.revalidate();
+	            contentPane.repaint();
+	            pack();
+	            setSize (800,590);
+	            setResizable(false);
+		  }
+		});
+		
+
+		//OnClick Back Button
+		hypo.getBackbtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+			  // ... called when button clicked
+				contentPane.remove(hypo);
+				contentPane.add(start);
+	            contentPane.revalidate();
+	            contentPane.repaint();
+	            pack();
+	            setSize (800,590);
+	            setResizable(false);
+		  }
+		});
+		
+		
 	}
 	
 	public static void main (String[] args) {

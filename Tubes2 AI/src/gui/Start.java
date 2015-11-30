@@ -81,7 +81,7 @@ public class Start extends JPanel {
           classifybtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
           
         //Back button
-          backbtn = new JButton(new ImageIcon("images/backbutton.png"));
+          backbtn = new JButton(new ImageIcon("images/homebutton.png"));
           setLayout(null);
           backbtn.setLocation(20, 120);
           backbtn.setSize(150, 50);
