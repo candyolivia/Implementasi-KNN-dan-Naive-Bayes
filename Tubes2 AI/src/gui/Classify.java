@@ -48,12 +48,12 @@ public class Classify extends JPanel {
 	private final static String newline = "\n";
 	private String filename = new String();
 	private JScrollPane scroll;
-
 	
 	public Classify() {
        try {   
           background = ImageIO.read(new File("images/background.jpg"));
           dales = ImageIO.read(new File("images/daleshowresult.png"));
+          
           
         //Preprocess button
           preprocessbtn = new JButton(new ImageIcon("images/preprocessbutton.png"));
@@ -144,17 +144,20 @@ public class Classify extends JPanel {
           areaResult.setEditable(false);
           areaResult.setBackground(new Color (255,255,255));
           areaResult.setFont(new Font("Arial", Font.BOLD, 12));
+        
           setLayout(null);
           areaResult.setLocation(220, 150);
           areaResult.setSize(540, 350);
-          areaResult.setLineWrap(true);
-          areaResult.setWrapStyleWord(true);
-
-		//create scrollbar
-		scroll = new JScrollPane (areaResult);
-		scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
-		setLayout(null);
-		
+          //areaResult.setLineWrap(true);
+          //areaResult.setWrapStyleWord(true);
+          //areaResult.getViewScrollPane().revalidate();
+          
+         
+        //create scrollbar
+          scroll = new JScrollPane (areaResult, 
+      		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+          
+          String content = "Halo pipin\\n halo Candy \\n jangan stress yaa";
         //Add to Panel
           add(preprocessbtn);
           add(classifybtn);
@@ -164,10 +167,9 @@ public class Classify extends JPanel {
           add(schemalabel);
           add(algolabel);
           add(areaResult);
-          add(generatebtn);
           add(scroll);
+          add(generatebtn);
           add(predictclassbtn);
-          
           
        } catch (IOException ex) {
             // handle exception...
@@ -292,6 +294,7 @@ public class Classify extends JPanel {
 	 			areaResult.append("\n  ==========================================================================  \n");
 				//Close the input stream
 				br.close();
+				areaResult.repaint();
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

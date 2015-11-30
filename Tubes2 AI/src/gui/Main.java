@@ -21,15 +21,21 @@ public class Main extends JFrame {
 		setTitle ("Naive Chip and The Neighbours");
 		setSize (800,590);
 		setLocation (270,60);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 		// Window Listeners
 		addWindowListener(new WindowAdapter() {
-		  	public void windowClosing(WindowEvent e) {
-			   System.exit(0);
-		  	} //windowClosing
-		} );
+		  public void windowClosing(WindowEvent e) {
+		    int confirmed = JOptionPane.showConfirmDialog(null, 
+		        "Are you sure you want to exit the program?", "Exit Program",
+		        JOptionPane.YES_NO_OPTION);
+
+		    if (confirmed == JOptionPane.YES_OPTION) {
+		      dispose(); 
+		    }
+		  }
+		});
 		
 		//Add Home Panel
 		Container contentPane = getContentPane();
@@ -41,6 +47,7 @@ public class Main extends JFrame {
 		Start start = new Start();
 		Classify classify = new Classify();
 		DetermineClass detclass = new DetermineClass();
+		Scrollbar scroll = new Scrollbar();
 		
 		//OnClick About Button
 		home.getAboutbtn().addActionListener(new ActionListener() {
@@ -52,7 +59,6 @@ public class Main extends JFrame {
               contentPane.repaint();
               pack();
               setSize (800,590);
-              setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
               setResizable(false);			  
 		  }
 		});
@@ -67,7 +73,6 @@ public class Main extends JFrame {
               contentPane.repaint();
               pack();
               setSize (800,590);
-              setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
               setResizable(false);			  
 		  }
 		});
@@ -82,7 +87,6 @@ public class Main extends JFrame {
               contentPane.repaint();
               pack();
               setSize (800,590);
-              setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
               setResizable(false);
 		  }
 		});
@@ -97,7 +101,6 @@ public class Main extends JFrame {
 	            contentPane.repaint();
 	            pack();
 	            setSize (800,590);
-	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	            setResizable(false);
 		  }
 		});
@@ -112,7 +115,6 @@ public class Main extends JFrame {
 	            contentPane.repaint();
 	            pack();
 	            setSize (800,590);
-	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	            setResizable(false);
 		  }
 		});
@@ -127,7 +129,6 @@ public class Main extends JFrame {
 	            contentPane.repaint();
 	            pack();
 	            setSize (800,590);
-	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	            setResizable(false);
 		  }
 		});
@@ -142,7 +143,6 @@ public class Main extends JFrame {
 	            contentPane.repaint();
 	            pack();
 	            setSize (800,590);
-	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	            setResizable(false);
 		  }
 		});
@@ -165,7 +165,6 @@ public class Main extends JFrame {
 				  contentPane.repaint();
 				  pack();
 				  setSize (800,590);
-				  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				  setResizable(false);  
 			  }
 			  
@@ -177,7 +176,6 @@ public class Main extends JFrame {
 	  			if(start.getChartPanel() != null){
 	  				contentPane.remove(start.getChartPanel());
 	  				contentPane.revalidate();
-	  				System.out.println("aaaa");
 	  			}
 	  			  
 	  			if (start.getFilename().equals("")) {
@@ -254,7 +252,6 @@ public class Main extends JFrame {
 	            contentPane.repaint();
 	            pack();
 	            setSize (800,590);
-	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	            setResizable(false);
 		  }
 		});
@@ -269,7 +266,6 @@ public class Main extends JFrame {
 	            contentPane.repaint();
 	            pack();
 	            setSize (800,590);
-	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	            setResizable(false);
 		  }
 		});

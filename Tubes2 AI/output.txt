@@ -1,5 +1,5 @@
   ==========================================================================  
-  	                         Test Mode : Naive-Bayes Full Training                 
+  	                Test Mode : Naive-Bayes 10-fold Cross Validation                 
   ==========================================================================  
 
       HYPOTHESIS
@@ -47,7 +47,7 @@
 
       RESULT :
 
-Correctly Classified Instances		: 1510
-Incorrectly Classified Instances	: 218
+Correctly Classified Instances		: 1503
+Incorrectly Classified Instances	: 225
 Number of Instances			: 1728
-Accuracy				: 87.38426%
+Accuracy				: 87.38371%
