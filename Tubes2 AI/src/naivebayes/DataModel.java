@@ -122,9 +122,8 @@ public class DataModel {
 	public StringBuffer stringHypothesis() {
 		StringBuffer sb = new StringBuffer();
 		List<Integer> count = new ArrayList<Integer>();
-		sb.append("      HYPOTHESIS");
 		sb.append("\n\n\n");
-		sb.append("   	");
+		sb.append("	   	");
 		List<String> classValue = new ArrayList<String>(attributes.get(attr.get(attr.size()-1)));
 		for (String c : classValue) {
 			sb.append("      "+c + "	");
@@ -134,13 +133,13 @@ public class DataModel {
 			count.clear();
 			Map<String, Map<String, Integer>> knowledge = new HashMap<String, Map<String, Integer>>(knowledgeBased.get(i));
 			List<String> keys = new ArrayList<String>(knowledge.keySet());
-			sb.append("      "+attr.get(i));
+			sb.append("	      "+attr.get(i));
 			sb.append("\n");
 			for (String c : classValue) {
 				count.add(0);
 			}
 			for (String key: keys) {
-				sb.append("         "+key + "  	");
+				sb.append("	         "+key + "  	");
 			    //if (key.length() < 4) System.out.print("	");
 			    Map<String, Integer> keysVal = new HashMap<String, Integer>(knowledge.get(key));
 			    for (int j=0; j<classValue.size(); j++) {
@@ -151,7 +150,7 @@ public class DataModel {
 				}
 			    sb.append("\n");
 			}
-			sb.append("         "+"Total"+"	");
+			sb.append("	         "+"Total"+"	");
 			for (int k=0; k<count.size(); k++) {
 				sb.append("       "+count.get(k)+"	");
 			}
