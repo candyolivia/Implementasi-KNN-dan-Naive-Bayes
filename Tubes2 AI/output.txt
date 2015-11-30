@@ -8,3 +8,43 @@ windy:
 {TRUE,FALSE}
 play:
 {yes,no}
+0 0 0 1 1 
+0 0 0 0 1 
+1 0 0 1 0 
+2 1 0 1 0 
+2 2 1 1 0 
+2 2 1 0 1 
+1 2 1 0 0 
+0 1 0 1 1 
+0 2 1 1 0 
+2 1 1 1 0 
+0 1 1 0 0 
+1 1 0 0 0 
+1 0 1 1 0 
+2 1 0 0 1 
+5 5
+Jumlah kelas : 2
+Jumlah attribute : 4
+yes sunny 
+yes overcast 
+yes rainy 
+yes hot 
+yes mild 
+yes cool 
+yes high 
+yes normal 
+yes TRUE 
+yes FALSE 
+no sunny 
+no overcast 
+no rainy 
+no hot 
+no mild 
+no cool 
+no high 
+no normal 
+no TRUE 
+no FALSE 
+yes sunny 
+yes overcast 
+yes rainy 
