@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.JTextArea;
+
 import model.fileConverter;
 
 
@@ -15,6 +18,8 @@ public class DataModel {
 	private List<String> data;
 	private List<String> classList = new ArrayList<String>();
 	private List<List<String>> attrList = new ArrayList<List<String>> ();
+	private List<String> attr;
+	private Map<String, List<String>> attributes;
 	private Map<String, Integer> classes = new HashMap<String, Integer> ();
 	private List<Map<String, Map<String, Integer>>> knowledgeBased = new ArrayList<Map<String, Map<String, Integer>>>();
 	
@@ -31,6 +36,8 @@ public class DataModel {
 			e.printStackTrace();
 		}
 		data = new ArrayList<String> (arrf.getAttrData());
+		attr = new ArrayList<String> (arrf.getAttr());
+		attributes = new HashMap<String, List<String>>(arrf.getAttributes());
 		classList.clear();
 		attrList.clear();
 		
@@ -109,6 +116,44 @@ public class DataModel {
 				map2.put(classList.get(idx), 1);
 				map.put(attString.get(i), map2);
 			}
+		}
+	}
+	
+	public void printHypothesis() {
+		List<Integer> count = new ArrayList<Integer>();
+		System.out.println();
+		System.out.print("   	");
+		List<String> classValue = new ArrayList<String>(attributes.get(attr.get(attr.size()-1)));
+		for (String c : classValue) {
+			System.out.print("      "+c + "	");
+		}
+		System.out.println();
+		for (int i=0; i<attr.size()-1; i++) {
+			count.clear();
+			Map<String, Map<String, Integer>> knowledge = new HashMap<String, Map<String, Integer>>(knowledgeBased.get(i));
+			List<String> keys = new ArrayList<String>(knowledge.keySet());
+			System.out.println("      "+attr.get(i));
+			for (String c : classValue) {
+				count.add(0);
+			}
+			for (String key: keys) {
+			    System.out.print("         "+key + "  	");
+			    //if (key.length() < 4) System.out.print("	");
+			    Map<String, Integer> keysVal = new HashMap<String, Integer>(knowledge.get(key));
+			    for (int j=0; j<classValue.size(); j++) {
+			    	int value = (keysVal.get(classValue.get(j))==null ? 0 : keysVal.get(classValue.get(j)));
+			    	count.set(j, count.get(j)+value);
+			    	//System.out.println(count.get(j));
+					System.out.print("       "+value + "	");
+				}
+			    System.out.println();
+			}
+			System.out.print("         "+"Total"+"	");
+			for (int k=0; k<count.size(); k++) {
+				System.out.print("       "+count.get(k)+"	");
+			}
+			System.out.println();
+			System.out.println();
 		}
 	}
 	

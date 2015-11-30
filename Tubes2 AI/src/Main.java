@@ -50,11 +50,15 @@ public class Main {
 				System.out.println("==================================================================");
 				NaiveBayes nbFCV = new NaiveBayes(filename);
 				nbFCV.predictFoldCV(filename);
+				System.out.println("Hypothesis				:");
+				nbFCV.getDataModel().printHypothesis();
 			} else {
 				NaiveBayes nbFull = new NaiveBayes(filename);
 				System.out.println("               Test Mode : Naive-Bayes Full Training                ");
 				System.out.println("==================================================================");
 				nbFull.predictFullTraining();
+				System.out.println("Hypothesis				:");
+				nbFull.getDataModel().printHypothesis();
 			}
 			
 		}

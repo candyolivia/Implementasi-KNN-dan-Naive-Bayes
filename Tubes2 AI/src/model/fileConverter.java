@@ -14,6 +14,8 @@ public class fileConverter {
 	private Data data;
 	private AttrInfo attrInfo;
 	private List<String> attrData = new ArrayList<String>();
+	private Map<String, List<String>> attributes = new HashMap<String, List<String>>();
+	private List<String> attribute = new ArrayList<String> ();
 	private ArrayList<Data> matrixData = new ArrayList<Data>();
 	private ArrayList<AttrInfo> matrixAttrInfo = new ArrayList<AttrInfo>();
 	Map<String, String> attr = new HashMap<String, String>();
@@ -85,6 +87,13 @@ public class fileConverter {
 				attrInfo = new AttrInfo();
                 attrInfo.setNumAttr(SplitData.length-2);
                 attrInfo.setAttrName(SplitData[1]);
+
+                List<String> value = new ArrayList<String>();
+                for (int i=2; i<SplitData.length; i++) {
+                	value.add(SplitData[i]);
+                }
+                attribute.add(SplitData[1]);
+                attributes.put(SplitData[1], value);
                 
                 String[] strL = new String[attrInfo.getNumAttr()];
                 attrInfo.setAttrList(strL);
@@ -217,5 +226,12 @@ public class fileConverter {
 		this.matrixChartData = matrixChartData;
 	}
 
+	public List<String> getAttr () {
+		return attribute;
+	}
+	
+	public Map<String, List<String>> getAttributes() {
+		return attributes;
+	}
 	
 }
