@@ -197,7 +197,7 @@ public class Main extends JFrame {
 	  	 			
 	  	 			try {
 	  					PrintStream printStream = new PrintStream(new FileOutputStream("output.txt"));
-	  					System.setOut(printStream);
+	  					System.setOut(printStream); 
 	  				} catch (FileNotFoundException e) {
 	  					// TODO Auto-generated catch block
 	  					e.printStackTrace();
