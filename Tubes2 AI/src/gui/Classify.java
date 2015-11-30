@@ -97,8 +97,16 @@ public class Classify extends JPanel {
           generatebtn.setSize(90, 90);
           generatebtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
           
-        
-          
+        //predictclass button
+          predictclassbtn = new JButton();
+          setLayout(null);
+          predictclassbtn.setText("Predict Class");
+          predictclassbtn.setFont(new Font("Arial", Font.BOLD, 12));
+          predictclassbtn.setLocation(580, 500);
+          predictclassbtn.setSize(180, 35);
+          predictclassbtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+          predictclassbtn.setVisible(false);
+      
         //Combo List
           String[] algolist = { "--Please Select Your Algorithm--", "Naive-Bayes", "k-Nearest Neighbours" };
           algorithm = new JComboBox();
@@ -147,9 +155,6 @@ public class Classify extends JPanel {
 		scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
 		setLayout(null);
 		
-		
-	 		 
-          
         //Add to Panel
           add(preprocessbtn);
           add(classifybtn);
@@ -161,18 +166,8 @@ public class Classify extends JPanel {
           add(areaResult);
           add(generatebtn);
           add(scroll);
-          if (!filename.equals("cardata.arff")) {
-  			System.out.println(filename.endsWith("cardata.arff"));
-  			//predictclass button
-  	          predictclassbtn = new JButton();
-  	          setLayout(null);
-  	          predictclassbtn.setText("Predict Class");
-  	          predictclassbtn.setFont(new Font("Arial", Font.BOLD, 12));
-  	          predictclassbtn.setLocation(580, 500);
-  	          predictclassbtn.setSize(180, 35);
-  	          predictclassbtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-  	          add(predictclassbtn);
-  		 }
+          add(predictclassbtn);
+          
           
        } catch (IOException ex) {
             // handle exception...
@@ -230,9 +225,9 @@ public class Classify extends JPanel {
  		    // ... called when button clicked
  			 System.out.println("algo: " + algorithm.getSelectedIndex() + "   "
  	 	              + "schema  : " + schema.getSelectedIndex());
- 			 System.out.println(filename);
- 			 System.out.println(filename.equals("cardata.arff"));
- 			 
+ 			if (filename.endsWith("cardata.arff")) {
+ 	        	predictclassbtn.setVisible(true);
+ 	  		 }
  			try {
 				PrintStream printStream = new PrintStream(new FileOutputStream("output.txt"));
 				System.setOut(printStream);
@@ -357,4 +352,14 @@ public class Classify extends JPanel {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
+
+	public JButton getPredictclassbtn() {
+		return predictclassbtn;
+	}
+
+	public void setPredictclassbtn(JButton predictclassbtn) {
+		this.predictclassbtn = predictclassbtn;
+	}
+	
+	
 }

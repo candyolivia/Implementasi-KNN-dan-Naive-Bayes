@@ -40,6 +40,7 @@ public class Main extends JFrame {
 		Help help = new Help();
 		Start start = new Start();
 		Classify classify = new Classify();
+		DetermineClass detclass = new DetermineClass();
 		
 		//OnClick About Button
 		home.getAboutbtn().addActionListener(new ActionListener() {
@@ -176,6 +177,7 @@ public class Main extends JFrame {
 	  			if(start.getChartPanel() != null){
 	  				contentPane.remove(start.getChartPanel());
 	  				contentPane.revalidate();
+	  				System.out.println("aaaa");
 	  			}
 	  			  
 	  			if (start.getFilename().equals("")) {
@@ -245,8 +247,24 @@ public class Main extends JFrame {
 		classify.getPreprocessbtn().addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 		    // ... called when button clicked
-			  contentPane.remove(classify);
-			  contentPane.add(start);
+				contentPane.remove(classify);
+				contentPane.add(start);
+				contentPane.remove(classify.getPredictclassbtn());
+	            contentPane.revalidate();
+	            contentPane.repaint();
+	            pack();
+	            setSize (800,590);
+	            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	            setResizable(false);
+		  }
+		});
+		
+		//OnClick Predict Class Button
+		classify.getPredictclassbtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+			  // ... called when button clicked
+				contentPane.remove(classify);
+				contentPane.add(detclass);
 	            contentPane.revalidate();
 	            contentPane.repaint();
 	            pack();
@@ -261,7 +279,6 @@ public class Main extends JFrame {
 		ImageIcon icon = new ImageIcon("images/icon.png");
 		JFrame f = new Main();
 		f.setIconImage(icon.getImage());
-		f.show();
-		
+		f.show();	
 	}
 }
