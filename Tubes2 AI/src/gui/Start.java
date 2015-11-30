@@ -53,6 +53,7 @@ public class Start extends JPanel {
 	private List<String> attributelist = new ArrayList<String>();
 	private ChartPanel chartPanel;
 	private ArrayList<ArrayList<Integer>> graphContainer = new ArrayList<ArrayList<Integer>>();
+	private JFreeChart chart;
 	
 	public Start() {
        try {   
@@ -221,12 +222,6 @@ public class Start extends JPanel {
  			  }
  		});
        
-     //Bar Charts
-       /*BarChart_AWT chart = new BarChart_AWT("Car Usage Statistics", "Which car do you like?");
-       chart.pack( );        
-       RefineryUtilities.centerFrameOnScreen( chart );        
-       chart.setVisible( true );*/
-       
        analysisbtn.addActionListener(new ActionListener() {
 		
 		@Override
@@ -265,12 +260,7 @@ public class Start extends JPanel {
     			   
     		   }
     		   
-    		   
-			   /*dataset.setValue(10, "tes1", "Data1");
-			   dataset.setValue(3, "tes2", "Data2");
-			   dataset.setValue(6, "tes3", "Data3");*/
-			
-			   JFreeChart chart = ChartFactory.createBarChart("", "", "", dataset, PlotOrientation.VERTICAL, false, false, false);
+			   chart = ChartFactory.createBarChart("", "", "", dataset, PlotOrientation.VERTICAL, false, false, false);
 			   CategoryPlot catPlot = chart.getCategoryPlot();
 			   catPlot.setRangeGridlinePaint(Color.BLACK);
 			
