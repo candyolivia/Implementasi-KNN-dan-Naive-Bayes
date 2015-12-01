@@ -46,7 +46,7 @@ public class Main extends JFrame {
 		Help help = new Help();
 		Start start = new Start();
 		Classify classify = new Classify();
-		DetermineClass detclass = new DetermineClass();
+		Determine detclass = new Determine();
 		Hypothesis hypo = new Hypothesis();
 		
 		//OnClick About Button
@@ -176,8 +176,8 @@ public class Main extends JFrame {
 		start.getAnalysisbtn().addActionListener(new ActionListener() {
 	  		  public void actionPerformed(ActionEvent evt) {
 	  			if(start.getChartPanel() != null){
-	  				contentPane.remove(start.getChartPanel());
-	  				contentPane.revalidate();
+                                    contentPane.remove(start.getChartPanel());
+                                    contentPane.revalidate();
 	  			}
 	  			  
 	  			if (start.getFilename().equals("")) {
@@ -260,9 +260,10 @@ public class Main extends JFrame {
 		//OnClick Predict Class Button
 		classify.getPredictclassbtn().addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
-			  // ... called when button clicked
-				contentPane.remove(classify);
-				contentPane.add(detclass);
+                    // ... called when button clicked
+                    detclass.setFilename(start.getFilename());
+                    contentPane.remove(classify);
+                    contentPane.add(detclass);
 	            contentPane.revalidate();
 	            contentPane.repaint();
 	            pack();
@@ -275,12 +276,12 @@ public class Main extends JFrame {
 		//OnClick Hypothesis Button
 		classify.getHypobtn().addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
-			  // ... called when button clicked
-			  	contentPane.remove(classify);
-	   			hypo.setContent(classify.getHypothesis());
-				hypo.getAreaText().setText(hypo.getContent().toString());
-				classify.getAreaResult().setText("");
-	   			contentPane.add(hypo);
+                    // ... called when button clicked
+                    contentPane.remove(classify);
+                    hypo.setContent(classify.getHypothesis());
+                    hypo.getAreaText().setText(hypo.getContent().toString());
+                    classify.getAreaResult().setText("");
+                    contentPane.add(hypo);
 				
 	            contentPane.revalidate();
 	            contentPane.repaint();
@@ -304,7 +305,21 @@ public class Main extends JFrame {
 	            setResizable(false);
 		  }
 		});
-		
+                
+                //Onlick Back Button
+                //OnClick Back Button
+		detclass.getBackbtn().addActionListener(new ActionListener() {
+		  public void actionPerformed(ActionEvent evt) {
+                    // ... called when button clicked
+                    contentPane.remove(detclass);
+                    contentPane.add(classify);
+	            contentPane.revalidate();
+	            contentPane.repaint();
+	            pack();
+	            setSize (800,590);
+	            setResizable(false);
+		  }
+		});
 		
 	}
 	
