@@ -2,6 +2,11 @@ package gui;
 
 import javax.swing.*;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -13,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import model.*;
 
@@ -160,7 +166,7 @@ public class Main extends JFrame {
                   	    JOptionPane.ERROR_MESSAGE);
 			  } else {
 				  classify.setFilename(start.getFilename());
-				  System.out.println(classify.getFilename());
+				  //System.out.println(classify.getFilename());
 				  contentPane.remove(start);
 				  contentPane.add(classify);
 				  contentPane.revalidate();
@@ -175,11 +181,7 @@ public class Main extends JFrame {
 		
 		start.getAnalysisbtn().addActionListener(new ActionListener() {
 	  		  public void actionPerformed(ActionEvent evt) {
-	  			if(start.getChartPanel() != null){
-                                    contentPane.remove(start.getChartPanel());
-                                    contentPane.revalidate();
-	  			}
-	  			  
+	  			
 	  			if (start.getFilename().equals("")) {
 	  				JOptionPane.showMessageDialog(start,
 	          	    "Error! File hasn't been chosen!",
@@ -235,7 +237,26 @@ public class Main extends JFrame {
 	  					e.printStackTrace();
 	  				}
 	  			}
-	  			contentPane.repaint();
+	  			start.validate();
+	  			start.repaint();
+	  		  }
+	  	});
+		
+		start.getGraphbtn().addActionListener(new ActionListener() {
+	  		  public void actionPerformed(ActionEvent evt) {
+	  			
+	  			if (start.getFilename().equals("")) {
+	  				JOptionPane.showMessageDialog(start,
+	          	    "Error! File hasn't been chosen!",
+	          	    "Error",
+	          	    JOptionPane.ERROR_MESSAGE);
+	  			} else if (start.getAttribute().getSelectedIndex() == -1) {
+	  				JOptionPane.showMessageDialog(start,
+		          	    "Error! File hasn't been analysed!",
+		          	    "Error",
+		          	    JOptionPane.ERROR_MESSAGE);
+	  			} else {
+	  			}
 	  		  }
 	  	});
 		

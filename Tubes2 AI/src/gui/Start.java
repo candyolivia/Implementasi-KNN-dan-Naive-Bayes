@@ -52,8 +52,10 @@ public class Start extends JPanel {
 	private JComboBox attribute;
 	private List<String> attributelist = new ArrayList<String>();
 	private ChartPanel chartPanel;
-	private ArrayList<ArrayList<Integer>> graphContainer = new ArrayList<ArrayList<Integer>>();
+	private ArrayList<ArrayList<Integer>> graphContainer;
 	private JFreeChart chart;
+	private DefaultCategoryDataset dataset;
+	private CategoryPlot catPlot;
 	
 	public Start() {
        try {   
@@ -230,16 +232,21 @@ public class Start extends JPanel {
 			//empty the container first
  		   attribute.removeAllItems();
  		   
- 		   for (int i = 0; i < attributelist.size(); i++)
+ 		   for (int i = 0; i < attributelist.size()-1; i++)
  			   attribute.addItem(attributelist.get(i)); //insert the element into container
 		}
 	});
        
        graphbtn.addActionListener(new ActionListener(){
-    	   public void actionPerformed(ActionEvent evt){    		   
+    	   public void actionPerformed(ActionEvent evt){  
+    		  
+    		   if (chartPanel != null) {
+    			   remove(chartPanel);
+    			   System.out.println("chart panel null");
+    		   }
     		   
-    		   DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-    		   
+    		   dataset = new DefaultCategoryDataset();
+    		   //System.out.println("datattaaa");
     		   fileConverter fc = new fileConverter();
     		   try {
     			   fc.dataToMatrix(filename);
@@ -249,19 +256,21 @@ public class Start extends JPanel {
     		   }
     		   
     		   fc.convertDataToInteger();
-    		   fc.dataToChartMatrix();    		   
+    		   fc.dataToChartMatrix();    
     		   
+    		   graphContainer = new ArrayList<ArrayList<Integer>>();
     		   int i = 0;
-    		   //for (int j = 0; j < fc.getMatrixAttrInfo().size()-1; j++) {
+    		   
     		   int j = attribute.getSelectedIndex();
+    		   System.out.println("SelectedIndex: "+j);
     		   for (int k = 0; k < fc.getMatrixAttrInfo().get(j).getNumAttr(); k++) {
-    			   System.out.println(fc.getMatrixAttrInfo().get(fc.getMatrixAttrInfo().size()-1).getAttrListN(i) + " " + fc.getMatrixAttrInfo().get(j).getAttrListN(k) + " ");
+    			   //System.out.println(fc.getMatrixAttrInfo().get(fc.getMatrixAttrInfo().size()-1).getAttrListN(i) + " " + fc.getMatrixAttrInfo().get(j).getAttrListN(k) + " ");
     			   dataset.addValue( fc.getMatrixChartData()[i][j][k] , fc.getMatrixAttrInfo().get(fc.getMatrixAttrInfo().size()-1).getAttrListN(i) , fc.getMatrixAttrInfo().get(j).getAttrListN(k) );
     			   
     		   }
     		   
 			   chart = ChartFactory.createBarChart("", "", "", dataset, PlotOrientation.VERTICAL, false, false, false);
-			   CategoryPlot catPlot = chart.getCategoryPlot();
+			   catPlot = chart.getCategoryPlot();
 			   catPlot.setRangeGridlinePaint(Color.BLACK);
 			
 			   chartPanel = new ChartPanel(chart);
@@ -270,6 +279,7 @@ public class Start extends JPanel {
 			   chartPanel.setOpaque(false);
 			   chartPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			   add(chartPanel);
+			   chartPanel.setVisible(true);
 			   revalidate();
     	   }
        });
@@ -346,4 +356,84 @@ public class Start extends JPanel {
 	public ChartPanel getChartPanel(){
 		return chartPanel;
 	}
+
+
+
+	public JButton getGraphbtn() {
+		return graphbtn;
+	}
+
+
+
+	public void setGraphbtn(JButton graphbtn) {
+		this.graphbtn = graphbtn;
+	}
+
+
+
+	public JComboBox getAttribute() {
+		return attribute;
+	}
+
+
+
+	public void setAttribute(JComboBox attribute) {
+		this.attribute = attribute;
+	}
+
+
+
+	public ArrayList<ArrayList<Integer>> getGraphContainer() {
+		return graphContainer;
+	}
+
+
+
+	public void setGraphContainer(ArrayList<ArrayList<Integer>> graphContainer) {
+		this.graphContainer = graphContainer;
+	}
+
+
+
+	public JFreeChart getChart() {
+		return chart;
+	}
+
+
+
+	public void setChart(JFreeChart chart) {
+		this.chart = chart;
+	}
+
+
+
+	public DefaultCategoryDataset getDataset() {
+		return dataset;
+	}
+
+
+
+	public void setDataset(DefaultCategoryDataset dataset) {
+		this.dataset = dataset;
+	}
+
+
+
+	public CategoryPlot getCatPlot() {
+		return catPlot;
+	}
+
+
+
+	public void setCatPlot(CategoryPlot catPlot) {
+		this.catPlot = catPlot;
+	}
+
+
+
+	public void setChartPanel(ChartPanel chartPanel) {
+		this.chartPanel = chartPanel;
+	}
+	
+	
 }
