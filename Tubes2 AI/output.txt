@@ -1,126 +1,20 @@
-outlook:
-{sunny,overcast,rainy}
-temperature:
-{hot,mild,cool}
-humidity:
-{high,normal}
-windy:
-{TRUE,FALSE}
-play:
-{yes,no}
-0 0 0 1 1 
-0 0 0 0 1 
-1 0 0 1 0 
-2 1 0 1 0 
-2 2 1 1 0 
-2 2 1 0 1 
-1 2 1 0 0 
-0 1 0 1 1 
-0 2 1 1 0 
-2 1 1 1 0 
-0 1 1 0 0 
-1 1 0 0 0 
-1 0 1 1 0 
-2 1 0 0 1 
-5 5
-Jumlah kelas : 2
-Jumlah attribute : 4
-yes sunny 
-yes overcast 
-yes rainy 
-yes hot 
-yes mild 
-yes cool 
-yes high 
-yes normal 
-yes TRUE 
-yes FALSE 
-no sunny 
-no overcast 
-no rainy 
-no hot 
-no mild 
-no cool 
-no high 
-no normal 
-no TRUE 
-no FALSE 
-SelectedIndex: 0
-chart panel null
-0 0 0 1 1 
-0 0 0 0 1 
-1 0 0 1 0 
-2 1 0 1 0 
-2 2 1 1 0 
-2 2 1 0 1 
-1 2 1 0 0 
-0 1 0 1 1 
-0 2 1 1 0 
-2 1 1 1 0 
-0 1 1 0 0 
-1 1 0 0 0 
-1 0 1 1 0 
-2 1 0 0 1 
-5 5
-Jumlah kelas : 2
-Jumlah attribute : 4
-yes sunny 
-yes overcast 
-yes rainy 
-yes hot 
-yes mild 
-yes cool 
-yes high 
-yes normal 
-yes TRUE 
-yes FALSE 
-no sunny 
-no overcast 
-no rainy 
-no hot 
-no mild 
-no cool 
-no high 
-no normal 
-no TRUE 
-no FALSE 
-SelectedIndex: 2
-chart panel null
-0 0 0 1 1 
-0 0 0 0 1 
-1 0 0 1 0 
-2 1 0 1 0 
-2 2 1 1 0 
-2 2 1 0 1 
-1 2 1 0 0 
-0 1 0 1 1 
-0 2 1 1 0 
-2 1 1 1 0 
-0 1 1 0 0 
-1 1 0 0 0 
-1 0 1 1 0 
-2 1 0 0 1 
-5 5
-Jumlah kelas : 2
-Jumlah attribute : 4
-yes sunny 
-yes overcast 
-yes rainy 
-yes hot 
-yes mild 
-yes cool 
-yes high 
-yes normal 
-yes TRUE 
-yes FALSE 
-no sunny 
-no overcast 
-no rainy 
-no hot 
-no mild 
-no cool 
-no high 
-no normal 
-no TRUE 
-no FALSE 
-SelectedIndex: 2
+  ==========================================================================  
+  	                         Test Mode : Naive-Bayes Full Training                 
+  ==========================================================================  
+
+      RESULT :
+	Correctly Classified Instances		: 1510
+	Incorrectly Classified Instances	: 218
+	Number of Instances		: 1728
+	Accuracy			: 87.38426%
+
+
+     CONFUSION MATRIX :
+		unacc	acc	good	vgood	
+	unacc	1161	85	0	0	
+	acc	47	289	46	26	
+	good	2	10	21	0	
+	vgood	0	0	2	39	
+
+	Horizontal Class Value	: Actual Class
+	Vertical Class Value	: Predicted Class

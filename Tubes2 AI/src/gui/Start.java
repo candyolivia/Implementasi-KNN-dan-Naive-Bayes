@@ -265,7 +265,8 @@ public class Start extends JPanel {
     		   System.out.println("SelectedIndex: "+j);
     		   for (int k = 0; k < fc.getMatrixAttrInfo().get(j).getNumAttr(); k++) {
     			   //System.out.println(fc.getMatrixAttrInfo().get(fc.getMatrixAttrInfo().size()-1).getAttrListN(i) + " " + fc.getMatrixAttrInfo().get(j).getAttrListN(k) + " ");
-    			   dataset.addValue( fc.getMatrixChartData()[i][j][k] , fc.getMatrixAttrInfo().get(fc.getMatrixAttrInfo().size()-1).getAttrListN(i) , fc.getMatrixAttrInfo().get(j).getAttrListN(k) );
+    			   //dataset.addValue( fc.getMatrixChartData()[i][j][k] , fc.getMatrixAttrInfo().get(fc.getMatrixAttrInfo().size()-1).getAttrListN(i) , fc.getMatrixAttrInfo().get(j).getAttrListN(k) );
+    			   dataset.addValue( fc.getMatrixChartData()[i][j][k] , Integer.toString(k) , fc.getMatrixAttrInfo().get(j).getAttrListN(k) );
     			   
     		   }
     		   

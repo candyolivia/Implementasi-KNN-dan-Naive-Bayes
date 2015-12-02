@@ -175,10 +175,14 @@ public class DataModel {
             return null;
     }
     
-    public String getClasses(int idx) {
-        if (idx >= 0 && idx < classList.size())
-            return classList.get(idx);
-        else
+    public List<String> getClasses() {
+       return classList;
+    }
+    
+    public String getClass (int i) {
+    	if (i >= 0 && i < attrList.size())
+            return classList.get(i);
+        else 
             return null;
     }
     
@@ -199,5 +203,9 @@ public class DataModel {
     
     public fileConverter getArrf() {
     	return arrf;
+    }
+    
+    public List<String> getClassValue() {
+    	return attributes.get(attr.get(attr.size()-1));
     }
 }

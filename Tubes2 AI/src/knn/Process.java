@@ -17,7 +17,7 @@ public class Process {
 	private double[][] percentage;
 	private int mode = 1; //Mode 1 for KNN 10-Fold Cross Validation (default)
 						//Mode 2 for KNN Full Training
-	private int[] analyseClass = new int[6]; // numAttr+1 for cardata.arff
+	public int[] analyseClass = new int[6]; // numAttr+1 for cardata.arff
 	
 	
 	public int[] getAnalyseClass() {
@@ -115,10 +115,10 @@ public class Process {
 				}
 			}
 			int trueInstance = (int) (max * numData);
-			System.out.println("\tCorrectly Classified Instances \t\t : " + trueInstance + "       " + max*100 + "%" );
-			System.out.println("\tIncorrectly Classified Instances \t : " + (numData - trueInstance) + "       " + (100 - max*100) + "%");
-			System.out.println("\tNumber of Instances\t\t : " + (numData));
-			System.out.println("\tSelected k value\t\t : " + idxmax);
+			System.out.println("	Correctly Classified Instances \t\t : " + trueInstance + "     " + max*100 + "%" );
+			System.out.println("	Incorrectly Classified Instances\t  : " + (numData - trueInstance) + "     " + (100 - max*100) + "%");
+			System.out.println("	Number of Instances\t\t : " + (numData));
+			System.out.println("	Selected k value\t\t : " + idxmax);
 		}
 	}
 	

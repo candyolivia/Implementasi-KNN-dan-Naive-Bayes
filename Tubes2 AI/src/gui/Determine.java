@@ -6,6 +6,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,8 +16,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
 import naivebayes.NaiveBayes;
 
 /**
@@ -164,6 +167,11 @@ public class Determine extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(116, 116, 116))
         );
+        backBtn.setOpaque(false);
+        backBtn.setContentAreaFilled(false);
+        backBtn.setBorderPainted(false);
+        backBtn.setFocusPainted(false);
+        backBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -217,6 +225,7 @@ public class Determine extends javax.swing.JPanel {
         System.out.println("persons: " + personsBox.getSelectedIndex());
         System.out.println("lug boot: " + lugbootBox.getSelectedIndex());
         System.out.println("safety: " + safetyBox.getSelectedIndex());
+        String[] attrClass = {"unacc","acc","good","vgood"};
         String[] attBuying = { "buying","vhigh","high","med","low" };
         String[] attMaint = { "maint","vhigh","high","med","low" };
         String[] attDoors = { "doors","2","3","4","5more" };
@@ -241,6 +250,11 @@ public class Determine extends javax.swing.JPanel {
         }
         else if(algorithmBox.getSelectedIndex()==2) { //KNN
             knn.Process knn = new knn.Process(filename);
+            int[] arrIntAtt = {buyingBox.getSelectedIndex()-1,maintBox.getSelectedIndex()-1,
+                    doorsBox.getSelectedIndex()-1, personsBox.getSelectedIndex()-1,
+                    lugbootBox.getSelectedIndex()-1, safetyBox.getSelectedIndex()-1};
+            knn.setAnalyseClass(arrIntAtt);
+            areaResult.append("Kelas: " + attrClass[knn.determineClassCarData()]);
             
         }
     }//GEN-LAST:event_determineActionPerformed

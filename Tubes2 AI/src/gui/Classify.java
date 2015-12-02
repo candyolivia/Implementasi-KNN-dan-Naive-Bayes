@@ -261,12 +261,12 @@ public class Classify extends JPanel {
  				p.setMode(schema.getSelectedIndex());
  				
  				if (p.getMode() == 2) {
- 					areaResult.setText("\n\t\t                        RESULT \n"+
+ 					areaResult.setText("\n\t\t                        RESULT\n "+
 		 					 "  ==========================================================================  \n" +
 		 					 "  \t\tTest Mode : KNN 10-fold Cross Validation                 \n" + 
 		 					 "  ==========================================================================  \n");
  				} else if (p.getMode() == 1){
- 					areaResult.setText("\n\t\t                        RESULT \n"+
+ 					areaResult.setText("\n\t\t                        RESULT\n "+
 		 					 "  ==========================================================================  \n" +
 		 					 "  \t\t Test Mode : KNN Full Training                        \n" + 
 		 					 "  ==========================================================================  \n");
@@ -280,18 +280,16 @@ public class Classify extends JPanel {
  					System.out.println("  ==========================================================================  \n" +
 		 					 "  	                Test Mode : Naive-Bayes 10-fold Cross Validation                 \n" + 
 		 					 "  ==========================================================================  \n");
- 					System.out.println("      HYPOTHESIS");
  					hypothesis = nbFCV.getDataModel().stringHypothesis();
- 					System.out.println("\n      RESULT :\n");
+ 					System.out.println("      RESULT :");
  					nbFCV.predictFoldCV(filename);
  				} else if (schema.getSelectedIndex() == 1){
  					NaiveBayes nbFull = new NaiveBayes(filename);
  					System.out.println("  ==========================================================================  \n" +
 		 					 "  	                         Test Mode : Naive-Bayes Full Training                 \n" + 
 		 					 "  ==========================================================================  \n");
- 					System.out.println("      HYPOTHESIS");
  					hypothesis = nbFull.getDataModel().stringHypothesis();
- 					System.out.println("\n      RESULT :\n");
+ 					System.out.println("      RESULT :");
  					nbFull.predictFullTraining();
  				}	
  			}
